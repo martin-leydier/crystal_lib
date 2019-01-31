@@ -85,7 +85,7 @@ class CrystalLib::LibBodyTransformer < Crystal::Transformer
   end
 
   def find_node(name)
-    @nodes.find { |node| node.name == name }
+    @nodes.select { |node| node.name == name }.last
   end
 
   def check_pending_definitions(node)
