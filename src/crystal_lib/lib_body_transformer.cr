@@ -47,6 +47,11 @@ class CrystalLib::LibBodyTransformer < Crystal::Transformer
       value = "0o#{value[1..-1]}"
     end
 
+    # suffix u/U
+    if value.size > 1 && (value[-1] == 'U' || value[-1] == 'u')
+      value = "#{value[0..-2]}_u32"
+    end
+
     begin
       node.value = Crystal::Parser.parse(value)
     rescue ex : Crystal::Exception
