@@ -85,7 +85,19 @@ class CrystalLib::LibBodyTransformer < Crystal::Transformer
   end
 
   def find_node(name)
-    @nodes.select { |node| node.name == name }.last
+    options = @nodes.select { |node| node.name == name }
+    #if options.size > 1
+    #  puts "# multiple options for node #{name}"
+    #  options.each do |node|
+    #    if node.is_a?(Define)
+    #      puts "# value: #{node.value}"
+    #    end
+    #  end
+    #end
+    if options.size > 0
+      return options.last
+    end
+    nil
   end
 
   def check_pending_definitions(node)
